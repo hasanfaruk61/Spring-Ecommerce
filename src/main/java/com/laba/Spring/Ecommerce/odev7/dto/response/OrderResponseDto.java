@@ -1,4 +1,4 @@
-package com.laba.Spring.Ecommerce.odev6.dto.response;
+package com.laba.Spring.Ecommerce.odev7.dto.response;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
-package com.laba.Spring.Ecommerce.odev6.controller;
+package com.laba.Spring.Ecommerce.odev7.controller;
 
-import com.laba.Spring.Ecommerce.odev6.dto.request.CreateOrderRequestDto;
-import com.laba.Spring.Ecommerce.odev6.dto.response.OrderResponseDto;
-import com.laba.Spring.Ecommerce.odev6.service.OrderService;
+import com.laba.Spring.Ecommerce.odev7.dto.request.CreateOrderRequestDto;
+import com.laba.Spring.Ecommerce.odev7.dto.response.OrderResponseDto;
+import com.laba.Spring.Ecommerce.odev7.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class OrderRestController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrder(@RequestBody CreateOrderRequestDto requestDto) {
+    public ResponseEntity<String> createOrder(@RequestBody CreateOrderRequestDto requestDto) throws InterruptedException {
         orderService.createOrder(requestDto);
         return ResponseEntity.ok("Order created successfully!");
     }

@@ -1,4 +1,4 @@
-package com.laba.Spring.Ecommerce.odev6.entity;
+package com.laba.Spring.Ecommerce.odev7.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

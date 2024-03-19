@@ -1,16 +1,17 @@
-package com.laba.Spring.Ecommerce.odev6.dto.request;
+package com.laba.Spring.Ecommerce.odev7.dto.request;
 
 import lombok.Data;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Data
 public class CreateOrderRequestDto {
-    private Long productId;
+
+    private List<Long> productIds;
     private String orderNumber;
     private Date orderDate;
     private String orderDescription;
     private Double totalAmount;
-    private Set<Long> productIds;
+    private Long userId;
 }

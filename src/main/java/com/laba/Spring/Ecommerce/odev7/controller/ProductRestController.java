@@ -1,8 +1,9 @@
-package com.laba.Spring.Ecommerce.odev6.controller;
+package com.laba.Spring.Ecommerce.odev7.controller;
 
-import com.laba.Spring.Ecommerce.odev6.dto.request.CreateProductRequestDto;
-import com.laba.Spring.Ecommerce.odev6.dto.response.ProductResponseDto;
-import com.laba.Spring.Ecommerce.odev6.service.ProductService;
+import com.laba.Spring.Ecommerce.odev7.dto.request.CreateProductRequestDto;
+import com.laba.Spring.Ecommerce.odev7.dto.response.ProductResponseDto;
+import com.laba.Spring.Ecommerce.odev7.entity.Product;
+import com.laba.Spring.Ecommerce.odev7.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable Long productId) {
-        ProductResponseDto productResponseDto = productService.getProductById(productId);
+    public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
+        Product productResponseDto = productService.getProductById(productId);
         return ResponseEntity.ok(productResponseDto);
     }
 
@@ -39,5 +40,11 @@ public class ProductRestController {
     public ResponseEntity<String> deleteProduct(@PathVariable Long productId) {
         productService.deleteProduct(productId);
         return ResponseEntity.ok("Product deleted successfully");
+    }
+
+    @GetMapping("productListByCategory/{category}")
+    public ResponseEntity<List<ProductResponseDto>> getProductsByCategory(@PathVariable String category) {
+        List<ProductResponseDto> productList = productService.getProductsByCategory(category);
+        return ResponseEntity.ok(productList);
     }
 }

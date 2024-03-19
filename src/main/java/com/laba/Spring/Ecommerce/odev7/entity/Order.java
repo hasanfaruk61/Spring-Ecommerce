@@ -1,9 +1,6 @@
-package com.laba.Spring.Ecommerce.odev6.entity;
+package com.laba.Spring.Ecommerce.odev7.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -18,6 +15,9 @@ public class Order extends BaseEntity {
     private Date orderDate;
     private String orderDescription;
     private Double totalAmount;
+
+    @ManyToOne
+    private Users users;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderProduct> orderProducts = new HashSet<>();

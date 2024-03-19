@@ -1,12 +1,11 @@
-package com.laba.Spring.Ecommerce.odev6.dto.response;
+package com.laba.Spring.Ecommerce.odev7.dto.request;
 
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class ProductResponseDto {
-    private Long id;
+public class CreateProductRequestDto {
     private String name;
     private String category;
     private String photoUrl;

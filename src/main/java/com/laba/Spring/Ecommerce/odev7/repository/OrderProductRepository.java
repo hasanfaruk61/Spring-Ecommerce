@@ -1,6 +1,6 @@
-package com.laba.Spring.Ecommerce.odev6.repository;
+package com.laba.Spring.Ecommerce.odev7.repository;
 
-import com.laba.Spring.Ecommerce.odev6.entity.OrderProduct;
+import com.laba.Spring.Ecommerce.odev7.entity.OrderProduct;
 import jakarta.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
