@@ -10,7 +10,6 @@ import com.laba.Spring.Ecommerce.odev7.repository.OrderProductRepository;
 import com.laba.Spring.Ecommerce.odev7.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -25,19 +24,17 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderProductRepository orderProductRepository;
     private final UserService userService;
-    private final MailService mailService;
     private final SmsService smsService;
 
     public OrderService(ProductService productService,
                         OrderRepository orderRepository,
                         OrderProductRepository orderProductRepository,
-                        UserService userService, MailService mailService, SmsService smsService) {
+                        UserService userService, SmsService smsService) {
 
         this.productService = productService;
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
         this.userService = userService;
-        this.mailService = mailService;
         this.smsService = smsService;
     }
 
@@ -74,10 +71,9 @@ public class OrderService {
                     orderProduct.setOrderProductDesc(orderDescription);
                     orderProductRepository.save(orderProduct);
                 });
-        //mailService.sendMailUser(order, users);
-        smsService.sendSmsUser(order, users);
+           smsService.sendSmsUser(order, users);
 
-        System.out.println("mail send");
+        System.out.println("sms send");
     }
 
 
