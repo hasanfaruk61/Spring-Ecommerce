@@ -14,8 +14,4 @@ public class ProductResponseDto {
     private int stockQuantity;
     private Date createDate;
     private Date updateDate;
-
-    public Date getCreateDate() {
-        return createDate;
-    }
 }

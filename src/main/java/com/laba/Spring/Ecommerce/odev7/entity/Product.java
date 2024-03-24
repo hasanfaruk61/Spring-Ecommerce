@@ -27,12 +27,4 @@ public class Product extends BaseEntity {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderProduct> orderProducts = new HashSet<>();
-
-    public int getNumberOfProducts() {
-        return orderProducts.size();
-    }
-
-    public void setNumberOfProducts(int i) {
-        orderProducts.size();
-    }
 }

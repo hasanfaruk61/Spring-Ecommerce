@@ -8,12 +8,10 @@ import com.laba.Spring.Ecommerce.odev7.exception.GeneralException;
 import com.laba.Spring.Ecommerce.odev7.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
