@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("api/orders")
 public class OrderRestController {
     private final OrderService orderService;
-
     public OrderRestController(OrderService orderService) {
         this.orderService = orderService;
     }

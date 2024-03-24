@@ -3,6 +3,8 @@ package com.laba.Spring.Ecommerce.odev7.service;
 import com.laba.Spring.Ecommerce.odev7.dto.request.CreateProductRequestDto;
 import com.laba.Spring.Ecommerce.odev7.dto.response.ProductResponseDto;
 import com.laba.Spring.Ecommerce.odev7.entity.Product;
+import com.laba.Spring.Ecommerce.odev7.exception.BusinessException;
+import com.laba.Spring.Ecommerce.odev7.exception.GeneralException;
 import com.laba.Spring.Ecommerce.odev7.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -29,9 +31,14 @@ public class ProductService {
         product.setPhotoUrl(requestDto.getPhotoUrl());
         product.setDescription(requestDto.getDescription());
         product.setPrice(requestDto.getPrice());
+        product.setStockQuantity(requestDto.getStockQuantity());
         product.setCreateDate(requestDto.getCreateDate());
         product.setUpdateDate(requestDto.getUpdateDate());
 
+        saveProduct(product);
+    }
+
+    public void saveProduct(Product product) {
         productRepository.save(product);
     }
 
@@ -40,7 +47,7 @@ public class ProductService {
         if (productOptional.isPresent()) {
             return productOptional.get();
         } else {
-            throw new EntityNotFoundException("Product not found with id: " + productId);
+            throw new GeneralException("Product not found with id: " + productId);
         }
     }
 
@@ -56,6 +63,7 @@ public class ProductService {
         responseDto.setPhotoUrl(product.getPhotoUrl());
         responseDto.setDescription(product.getDescription());
         responseDto.setPrice(product.getPrice());
+        responseDto.setStockQuantity(product.getStockQuantity());
         responseDto.setCreateDate(product.getCreateDate());
         responseDto.setUpdateDate(product.getUpdateDate());
         return responseDto;
@@ -76,11 +84,27 @@ public class ProductService {
             productResponseDto.setDescription(product.getDescription());
             productResponseDto.setPhotoUrl(product.getPhotoUrl());
             productResponseDto.setPrice(product.getPrice());
+            productResponseDto.setStockQuantity(product.getStockQuantity());
             productResponseDto.setCreateDate(product.getCreateDate());
             productResponseDto.setUpdateDate(product.getUpdateDate());
             return productResponseDto;
 
         }).toList();
     }
+
+    @Transactional
+    public void reduceProductStock(Long productId) throws BusinessException {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + productId));
+
+        int currentStock = product.getStockQuantity();
+        if (currentStock > 0) {
+            product.setStockQuantity(currentStock - 1);
+            productRepository.save(product);
+        } else {
+            throw new BusinessException("Insufficient stock for product with id: " + productId);
+        }
+    }
+
 
 }

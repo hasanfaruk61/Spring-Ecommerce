@@ -11,6 +11,7 @@ public class ProductResponseDto {
     private String photoUrl;
     private String description;
     private Double price;
+    private int stockQuantity;
     private Date createDate;
     private Date updateDate;
 

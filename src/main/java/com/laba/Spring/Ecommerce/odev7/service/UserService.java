@@ -15,7 +15,6 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-
     }
 
     @Transactional
@@ -25,8 +24,8 @@ public class UserService {
         users.setLastName(createUserRequestDto.getLastName());
         users.setEmail(createUserRequestDto.getEmail());
         users.setPhoneNumber(createUserRequestDto.getPhoneNumber());
-        userRepository.save(users);
 
+        userRepository.save(users);
     }
 
     public Optional<Users> findUserById(Long id){

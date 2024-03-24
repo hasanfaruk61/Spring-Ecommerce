@@ -7,7 +7,6 @@ import java.util.List;
 
 @Data
 public class CreateOrderRequestDto {
-
     private List<Long> productIds;
     private String orderNumber;
     private Date orderDate;

@@ -21,9 +21,18 @@ public class Product extends BaseEntity {
     private String name;
     private String category;
     private String photoUrl;
+    private int stockQuantity;
     private String description;
     private Double price;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderProduct> orderProducts = new HashSet<>();
+
+    public int getNumberOfProducts() {
+        return orderProducts.size();
+    }
+
+    public void setNumberOfProducts(int i) {
+        orderProducts.size();
+    }
 }
