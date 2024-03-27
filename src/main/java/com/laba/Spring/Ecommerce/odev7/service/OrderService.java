@@ -74,7 +74,7 @@ public class OrderService {
                     try {
                         productService.reduceProductStock(product.getId());
                     } catch (BusinessException e) {
-                        throw new RuntimeException(e);
+                        throw new RuntimeException("stok düşme sırasında bir hata oluştu",e);
                     }
                 });
            smsService.sendSmsUser(order, users);

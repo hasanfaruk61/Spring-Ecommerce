@@ -44,9 +44,8 @@ public class ProductService {
         Optional<Product> productOptional = productRepository.findById(productId);
         if (productOptional.isPresent()) {
             return productOptional.get();
-        } else {
-            throw new GeneralException("Product not found with id: " + productId);
         }
+        throw new GeneralException("Product not found with id: " + productId);
     }
 
     public List<ProductResponseDto> getAllProducts() {
