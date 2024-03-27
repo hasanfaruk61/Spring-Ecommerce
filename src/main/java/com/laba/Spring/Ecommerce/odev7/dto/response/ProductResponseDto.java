@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Data
 public class ProductResponseDto {
+    private Long id;
     private String name;
     private String category;
     private String photoUrl;

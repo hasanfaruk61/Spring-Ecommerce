@@ -2,6 +2,7 @@ package com.laba.Spring.Ecommerce.odev7.controller;
 
 import com.laba.Spring.Ecommerce.odev7.dto.request.CreateOrderRequestDto;
 import com.laba.Spring.Ecommerce.odev7.dto.response.OrderResponseDto;
+import com.laba.Spring.Ecommerce.odev7.exception.BusinessException;
 import com.laba.Spring.Ecommerce.odev7.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class OrderRestController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrder(@RequestBody CreateOrderRequestDto requestDto) throws InterruptedException {
+    public ResponseEntity<String> createOrder(@RequestBody CreateOrderRequestDto requestDto) throws BusinessException, InterruptedException {
         orderService.createOrder(requestDto);
         return ResponseEntity.ok("Order created successfully!");
     }

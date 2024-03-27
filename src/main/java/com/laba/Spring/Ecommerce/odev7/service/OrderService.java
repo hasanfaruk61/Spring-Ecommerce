@@ -40,7 +40,7 @@ public class OrderService {
     }
 
     @Transactional
-    public void createOrder(CreateOrderRequestDto requestDto) throws InterruptedException {
+    public void createOrder(CreateOrderRequestDto requestDto) throws BusinessException {
         List<Long> productIds = requestDto.getProductIds();
         String orderDescription = requestDto.getOrderDescription();
         Long userId = requestDto.getUserId();
@@ -82,7 +82,7 @@ public class OrderService {
            getCargoOffer(order.getId());
     }
 
-    private void getCargoOffer(Long orderId) {
+    private void getCargoOffer(Long orderId) throws BusinessException {
         Optional<Order> orderById = orderRepository.findById(orderId);
         Order order = orderById.orElseThrow(() -> new GeneralException("Order not found with id: " + orderId));
         List<OrderProduct> orderProducts = orderProductRepository.findAllByOrder(order);
@@ -91,10 +91,10 @@ public class OrderService {
             totalPrice += orderProduct.getProduct().getPrice();
         }
         if (totalPrice < 50) {
-            throw new GeneralException("No Offer for this Order!");
+            throw new BusinessException("No Offer for this Order!");
         }
-
     }
+
     public OrderResponseDto getOneOrderByOrderId(Long orderId) {
         Order order = orderRepository.findById(orderId).get();
         return toResponseDto(order);
@@ -122,5 +122,8 @@ public class OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(() -> new GeneralException("Order not found with id: " + orderId));
         orderProductRepository.deleteByOrderId(orderId);
         orderRepository.delete(order);
+    }
+
+    public void getCargoOffer(Order order, Users users) {
     }
 }

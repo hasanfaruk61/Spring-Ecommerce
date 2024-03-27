@@ -4,6 +4,7 @@ import com.laba.Spring.Ecommerce.odev7.dto.request.CreateProductRequestDto;
 import com.laba.Spring.Ecommerce.odev7.dto.response.ProductResponseDto;
 import com.laba.Spring.Ecommerce.odev7.entity.Product;
 import com.laba.Spring.Ecommerce.odev7.service.ProductService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,7 @@ public class ProductRestController {
     }
 
     @DeleteMapping("/{productId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> deleteProduct(@PathVariable Long productId) {
         productService.deleteProduct(productId);
         return ResponseEntity.ok("Product deleted successfully");
