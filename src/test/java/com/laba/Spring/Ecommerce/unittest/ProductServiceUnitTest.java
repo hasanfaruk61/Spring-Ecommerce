@@ -1,12 +1,12 @@
 package com.laba.Spring.Ecommerce.unittest;
 
-import com.laba.Spring.Ecommerce.odev7.dto.request.CreateProductRequestDto;
-import com.laba.Spring.Ecommerce.odev7.dto.response.ProductResponseDto;
-import com.laba.Spring.Ecommerce.odev7.entity.Product;
-import com.laba.Spring.Ecommerce.odev7.exception.BusinessException;
-import com.laba.Spring.Ecommerce.odev7.exception.GeneralException;
-import com.laba.Spring.Ecommerce.odev7.repository.ProductRepository;
-import com.laba.Spring.Ecommerce.odev7.service.ProductService;
+import com.laba.Spring.Ecommerce.odev10.dto.request.CreateProductRequestDto;
+import com.laba.Spring.Ecommerce.odev10.dto.response.ProductResponseDto;
+import com.laba.Spring.Ecommerce.odev10.entity.Product;
+import com.laba.Spring.Ecommerce.odev10.exception.BusinessException;
+import com.laba.Spring.Ecommerce.odev10.exception.GeneralException;
+import com.laba.Spring.Ecommerce.odev10.repository.ProductRepository;
+import com.laba.Spring.Ecommerce.odev10.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -142,7 +142,7 @@ public class ProductServiceUnitTest {
 
         Product product = new Product();
         product.setId(1L);
-        product.setStockQuantity(0);
+        product.setStockQuantity(4);
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
         productService.reduceProductStock(1L);
