@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  api_service:
+    build: .
+    image: hfp/ecommercehb:latest
+    container_name: EcommerceHBN
+    #Eğer konteyner herhangi bir sebepten dolayı durursa, Docker'ın konteyneri otomatik olarak yeniden başlatması gerektiğini belirtir
+    restart: always
+    ports:
+      - 8080:8080
+    #Bu konteyneri springapimysql-net adlı bir ağa atar. Ağlar, konteynerlerin birbirleriyle doğrudan iletişim kurmasına olanak tanır. Docker Compose dosyanızdaki birden fazla servis (konteyner) aynı ağa aitse, servis adını (örneğin, mysqldb) hostname olarak kullanarak iletişim kurabilirler.
+    networks:
+      - springapimysql-net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/ecommerce?allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: secret
+    depends_on:
+      - mysqldb
+    volumes:
+      - .m2:/root/.m2
+
+  mysqldb:
+    image: "mysql:latest"
+    restart: always
+    container_name: mysql-edu
+    ports:
+      - 3307:3306
+    networks:
+      - springapimysql-net
+    environment:
+      MYSQL_DATABASE: ecommerce
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: Amila_Rpw
+networks:
+  springapimysql-net:
